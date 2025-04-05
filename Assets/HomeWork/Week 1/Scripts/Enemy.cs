@@ -22,13 +22,13 @@ public class Enemy : MonoBehaviour
     // 5 Enemies variables
 
     //variables 1 
-    protected int maxHealth = 100;
+    public int maxHealth = 100;
     //variables 2
-    protected int healthRegen = 1;
+    public int healthRegen = 1;
     //variables 3 
-    protected int currentHealth = 80;
+    public int currentHealth = 80;
     //variables 4 
-    protected float regenTimer = 0f;
+    public float regenTimer = 0f;
     //variables 5 
     [SerializeField] public bool madNessMode = false;
     // 5 Enemies methods
