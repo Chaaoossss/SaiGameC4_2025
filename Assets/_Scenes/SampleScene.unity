@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 567948917}
-  animator: {fileID: 0}
+  animator: {fileID: 2048529425}
   weight: 1
 --- !u!1 &705507993
 GameObject:
@@ -842,6 +842,14 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1318483345}
+    - target: {fileID: 2257881559060944068, guid: 156d605a1816c5740ad55f97588aca54, type: 3}
+      propertyPath: enemyCtrl
+      value: 
+      objectReference: {fileID: 1203361685}
+    - target: {fileID: 2257881559060944068, guid: 156d605a1816c5740ad55f97588aca54, type: 3}
+      propertyPath: TargetToMove
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4352743693911381299, guid: 156d605a1816c5740ad55f97588aca54, type: 3}
       propertyPath: m_Name
       value: EnemyMoving
@@ -949,8 +957,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1179238140}
   - {fileID: 1318483344}
+  - {fileID: 1179238140}
   m_Father: {fileID: 373369120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1203361685
@@ -966,7 +974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1203361683}
-  animator: {fileID: 0}
+  animator: {fileID: 1318483345}
   weight: 1
 --- !u!1001 &1318483343
 PrefabInstance:
@@ -1118,7 +1126,7 @@ GameObject:
   - component: {fileID: 2026819205}
   - component: {fileID: 2026819204}
   m_Layer: 0
-  m_Name: Target
+  m_Name: TargetToMove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1226,7 +1234,7 @@ PrefabInstance:
     - target: {fileID: 2257881559060944068, guid: 156d605a1816c5740ad55f97588aca54, type: 3}
       propertyPath: agent
       value: 
-      objectReference: {fileID: 567948917}
+      objectReference: {fileID: 0}
     - target: {fileID: 2257881559060944068, guid: 156d605a1816c5740ad55f97588aca54, type: 3}
       propertyPath: Target
       value: 
@@ -1234,7 +1242,15 @@ PrefabInstance:
     - target: {fileID: 2257881559060944068, guid: 156d605a1816c5740ad55f97588aca54, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 2048529425}
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257881559060944068, guid: 156d605a1816c5740ad55f97588aca54, type: 3}
+      propertyPath: enemyCtrl
+      value: 
+      objectReference: {fileID: 567948918}
+    - target: {fileID: 2257881559060944068, guid: 156d605a1816c5740ad55f97588aca54, type: 3}
+      propertyPath: TargetToMove
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4352743693911381299, guid: 156d605a1816c5740ad55f97588aca54, type: 3}
       propertyPath: m_Name
       value: EnemyMoving

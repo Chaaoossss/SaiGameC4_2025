@@ -7,6 +7,10 @@ public class EnemyCtrl : SaiBehavior
 {
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Animator animator;
+
+    public NavMeshAgent Agent => agent;
+    public Animator Animator => animator;
+
     int currentHP = 10;
     public float weight = 1f;
 
@@ -20,6 +24,7 @@ public class EnemyCtrl : SaiBehavior
     {
         base.LoadComponents();
         this.LoadAgents();
+        this.LoadAnimator();
     }
 
 
@@ -33,6 +38,16 @@ public class EnemyCtrl : SaiBehavior
         this.agent = GetComponent<NavMeshAgent>();
 
         Debug.LogWarning(transform.name + ": Load Agent", gameObject);
+    }
+
+    protected void LoadAnimator()
+    {
+        if (this.animator != null)
+        {
+            return;
+        }
+        this.animator = transform.Find("Model").GetComponent<Animator>();
+        Debug.LogWarning(transform.name + ": Load Animator", gameObject);
     }
 
     bool isDead()
