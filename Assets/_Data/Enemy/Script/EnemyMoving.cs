@@ -5,10 +5,12 @@ using UnityEngine.AI;
 
 public class EnemyMoving : SaiBehavior
 {
-    [SerializeField] protected Transform TargetToMove;
+    //[SerializeField] protected Transform TargetToMove;
+    [SerializeField] protected Point pointToGo;
     [SerializeField] protected EnemyCtrl enemyCtrl;
     [SerializeField] protected bool isMoving = true;
     [SerializeField] protected float targetDistance = 1f;
+    [SerializeField] protected float stopDistance = 1f;
 
     protected void Start()
     {
@@ -25,10 +27,9 @@ public class EnemyMoving : SaiBehavior
     {
         base.LoadComponents();
         this.LoadEnemyCtrl();
-        this.LoadTargetToMove();
     }
 
-    protected void LoadEnemyCtrl()
+    protected virtual void LoadEnemyCtrl()
     {
         if (this.enemyCtrl != null)
         {
@@ -38,26 +39,27 @@ public class EnemyMoving : SaiBehavior
         Debug.LogWarning(transform.name + ": Load EnemyCtrl", gameObject);
     }
 
-    protected void LoadTargetToMove()
-    {
-        if (this.TargetToMove != null)
-        {
-            return;
-        }
-        this.TargetToMove = GameObject.Find("TargetToMove").transform; // Find the target to move in the scene
-        Debug.LogWarning(transform.name + ": Load TargetToMove", gameObject);
-    }
+    //protected void LoadTargetToMove()
+    //{
+    //    if (this.TargetToMove != null)
+    //    {
+    //        return;
+    //    }
+    //    this.TargetToMove = GameObject.Find("TargetToMove").transform; // Find the target to move in the scene
+    //    Debug.LogWarning(transform.name + ": Load TargetToMove", gameObject);
+    //}
 
-    protected void MoveToTarget()
+    protected virtual void MoveToTarget()
     {
-        if (TargetToMove != null)
-        {
-            Vector3 position = this.TargetToMove.position;
+        if (pointToGo == null) return;
+
+            Vector3 position = this.pointToGo.transform.position;
 
             this.targetDistance = Vector3.Distance(this.transform.position, position); // Check if the target is within a certain distance
-            if (this.targetDistance < 1f)
+            if (this.targetDistance < this.stopDistance)
             {
                 this.enemyCtrl.Agent.isStopped = true; // Stop the agent if the target is within the distance
+                this.LoadNextPoint(); // Load the next point to move to
             }
             else
             {
@@ -65,15 +67,22 @@ public class EnemyMoving : SaiBehavior
                 this.enemyCtrl.Agent.SetDestination(position); // Set the destination of the NavMeshAgent to the target position
             }
 
-        }
+        
     }
 
-    protected void UpdateAnimator()
+    protected virtual void UpdateAnimator()
     {
         if (this.enemyCtrl.Animator != null)
         {
             this.isMoving = !this.enemyCtrl.Agent.isStopped && this.enemyCtrl.Agent.velocity.magnitude > 0.1f;
             this.enemyCtrl.Animator.SetBool("isMoving", this.isMoving); // Update the animator with the movement state
         }
+    }
+
+    protected virtual void LoadNextPoint()
+    {
+
+            this.pointToGo = this.pointToGo.NextPoint; // Load the next point to move to
+
     }
 }
